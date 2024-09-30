@@ -9,7 +9,7 @@ const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [token, setToken] = useState("");
   const [id, setId] = useState(0);
-  const url = "https://artvista-backend-1zpu.onrender.com";
+  const url = "https://artvista-gallery-backend-1.onrender.com";
   const [art_list, setArtList] = useState([]);
 
   useEffect(() => {
