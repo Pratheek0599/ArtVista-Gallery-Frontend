@@ -15,8 +15,8 @@ const OAuth = () => {
     provider.setCustomParameters({ prompt: "select_account" });
     try {
       const result = await signInWithPopup(auth, provider);
-      const res = await fetch("https://artvista-gallery-backend-e56s.vercel.app//api/user/google",
-      // const res = await fetch("http://localhost:8081/api/user/google",
+      const res = await fetch("https://artvista-gallery-backend-oaz0.onrender.com/api/user/google",
+        // const res = await fetch("http://localhost:8081/api/user/google",
 
         {
           method: "POST",
