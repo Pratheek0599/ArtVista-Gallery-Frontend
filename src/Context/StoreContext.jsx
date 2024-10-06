@@ -4,13 +4,11 @@ import { createContext, useEffect, useState } from "react";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-
-  
   const [cartItems, setCartItems] = useState({});
   const [token, setToken] = useState("");
   const [id, setId] = useState(0);
-  // const url = "https://artvista-gallery-backend-1.onrender.com";
-  const url = "http://localhost:8081";
+  const url = "https://artvista-gallery-backend-e56s.vercel.app";
+  // const url = "http://localhost:8081";
   const [art_list, setArtList] = useState([]);
 
   useEffect(() => {
@@ -32,7 +30,7 @@ const StoreContextProvider = (props) => {
     try {
       const response = await axios.get(`${url}/api/arts/get-art`);
       setArtList(response.data.data);
-     // console.log(response.data);
+      // console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -44,7 +42,7 @@ const StoreContextProvider = (props) => {
       const response = await axios.post(
         `${url}/api/cart/getCart`,
         {},
-        { headers:{ token }}
+        { headers: { token } }
       );
       setCartItems(response.data.cartData);
     } catch (error) {
@@ -97,11 +95,11 @@ const StoreContextProvider = (props) => {
         //checking art item id is equal to cart item id
         let itemDetail = art_list.find((product) => product._id == key);
         //calculating total amount by getting art price  and cart items quantity
-       console.log(itemDetail.price)
-       totalAmount += itemDetail.price * (cartItems[key]);
+        console.log(itemDetail.price);
+        totalAmount += itemDetail.price * cartItems[key];
       }
     }
-    console.log(totalAmount)
+    console.log(totalAmount);
     return totalAmount;
   };
   const contextValue = {

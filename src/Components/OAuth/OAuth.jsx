@@ -15,21 +15,24 @@ const OAuth = () => {
     provider.setCustomParameters({ prompt: "select_account" });
     try {
       const result = await signInWithPopup(auth, provider);
-      // const res = await fetch("https://artvista-gallery-backend-1.onrender.com/api/user/google",
-    const res = await fetch("http://localhost:8081/api/user/google", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: result.user.displayName,
-        email: result.user.email,
-        profilePic: result.user.photoURL,
-      }),
-    });
+      const res = await fetch("https://artvista-gallery-backend-e56s.vercel.app//api/user/google",
+      // const res = await fetch("http://localhost:8081/api/user/google",
+
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: result.user.displayName,
+            email: result.user.email,
+            profilePic: result.user.photoURL,
+          }),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
-        localStorage.setItem('token',data.token)
+        localStorage.setItem("token", data.token);
         dispatch(signInSuccess(data));
         navigate("/arts");
       }
